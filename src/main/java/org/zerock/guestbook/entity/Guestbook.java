@@ -2,10 +2,7 @@ package org.zerock.guestbook.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -16,7 +13,7 @@ import javax.persistence.Id;
 public class Guestbook extends BaseEntity{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long gno;
 
     @Column(length = 100, nullable = false)
@@ -27,4 +24,12 @@ public class Guestbook extends BaseEntity{
 
     @Column(length = 50, nullable = false)
     private String writer;
+
+    public void changeTitle(String title) {
+        this.title = title;
+    }
+
+    public void changeContent(String content) {
+        this.content = content;
+    }
 }
